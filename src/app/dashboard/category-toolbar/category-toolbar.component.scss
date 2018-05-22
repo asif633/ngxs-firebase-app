@@ -1,0 +1,17 @@
+.container {
+    margin: 20px 0px;
+    padding: 5px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+}
+
+.example-container {
+    width: 95vw;
+    max-width: 95vw;
+    height: 80vw;
+    margin: 10px 10px 10px 20px;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }

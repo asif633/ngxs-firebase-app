@@ -1,0 +1,45 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer [mode]="'side'" [position]="'start'" [opened]="openDrawer" [disableClose]="true">
+    <mat-nav-list>
+      <h4>Categories</h4>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let item of (items | async).categories">
+        <a matLine>{{ item.name }}</a>
+        <button mat-icon-button (click)="showInfo(item.id)">
+          <mat-icon color="accent">info</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list>
+      <h4>Subcategories</h4>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let item of (subcategory | async).subcategories">
+        <a matLine>{{ item.name }}</a>
+        <button mat-icon-button (click)="selectSubCat(item.id)">
+          <mat-icon color="primary">info</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+    <button mat-button color="primary" (click)="openCat()">Close</button>
+  </mat-drawer>
+  <mat-drawer [mode]="'side'" [position]="'end'" [opened]="openRightDrawer" [disableClose]="true">
+    <app-cart></app-cart>
+    <button mat-button color="primary" (click)="openCart()">Close</button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button mat-button color="primary" (click)="openCat()">
+        <mat-icon>ballot</mat-icon>
+      </button>
+      <span class="spacer"></span>
+      <ng-template #elseBlock>
+        <span *ngIf="(it | async).cart">{{(it | async).cart.items.length }} items</span>
+      </ng-template>
+      <span *ngIf="!(it | async).cart;else elseBlock">0 items</span>
+      <button mat-fab color="primary" (click)="openCart()">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </mat-toolbar>
+    <app-itemlist></app-itemlist>
+  </mat-drawer-content>
+</mat-drawer-container>

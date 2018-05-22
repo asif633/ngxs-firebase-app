@@ -1,0 +1,13 @@
+<div class="listcontainer">
+  <mat-card *ngFor="let item of (it | async).items" class="classcard">
+    <img mat-card-image [src]="item.imageUrl" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <h4>{{item.name}}</h4>
+      <h5>{{item.price | currency:'INR':true}}</h5>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addCart(item)">Add to Cart</button>
+      <button mat-raised-button color="accent">Add to Wishlist</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

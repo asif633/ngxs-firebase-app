@@ -1,0 +1,17 @@
+<h3>Cart</h3>
+<mat-nav-list *ngIf="(it | async).cart">
+  <mat-list-item *ngFor="let item of (it | async).cart.items">
+    <a matLine>{{ item.name }}</a>
+    <mat-chip style="padding: 5px;" color="primary" selected="true">{{item.quantity}} items</mat-chip>
+    <button mat-icon-button (click)="addToCart(item)">
+      <mat-icon color="primary">add</mat-icon>
+    </button>
+    <button mat-icon-button (click)="removeFromCart(item)">
+      <mat-icon color="accent">remove</mat-icon>
+    </button>
+    <button mat-icon-button (click)="deleteCartItem(item.id)">
+      <mat-icon color="danger">delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-nav-list>
+<!-- <mat-toolbar *ngIf="it | async">{{(it.cart.total).async}}</mat-toolbar> -->
